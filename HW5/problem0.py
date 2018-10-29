@@ -138,7 +138,10 @@ def compute_x(e2):
 
     #########################################
     ## INSERT YOUR CODE HERE
-
+    x = e2
+    threshold = 0
+    x[x < threshold] = 0
+    x[x > threshold] = 1
     #########################################
     return x
 
@@ -164,14 +167,14 @@ def spectral_clustering(A):
     ## INSERT YOUR CODE HERE
 
     # compute degree matrix
-
+    D = compute_D(A)
     # compute laplacian matrix
-
+    L = compute_L(D, A)
     # compute eigen pairs of L
-
+    E, v = compute_eigen_pairs(L)
     # find the eigen vector with the smallest non-zero eigen value
-
+    e2 = find_e2(E, v, tol=1e-6)
     # compute the graph partition
-
+    x = compute_x(e2)
     #########################################
     return x
